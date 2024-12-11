@@ -37,23 +37,23 @@ async function llamadoApi() {
       tiposPokemon.push(tipos);
     });
     // Agregar botones de tipo Pokémon
-tiposPokemon.map(tipo => {
-  if (!tipo.nombre.match(/(stellar|fairy|unknown)+/g)) {
-    const buttonType = document.createElement('button');
-    buttonType.classList.add('button-type');
-    buttonType.id = tipo.nombre;
-    buttonType.innerHTML = `
+    tiposPokemon.map(tipo => {
+      if (!tipo.nombre.match(/(stellar|fairy|unknown|dark)+/g)) {
+        const buttonType = document.createElement('button');
+        buttonType.classList.add('button-type');
+        buttonType.id = tipo.nombre;
+        buttonType.innerHTML = `
       <img src='${tipo.img}'>
     `;
-    filterMenu.appendChild(buttonType);
-  }
-});
+        filterMenu.appendChild(buttonType);
+      }
+    });
 
-// Añadir el botón de "Limpiar Filtros" al final del menú de filtros
-const clearButton = document.createElement('button');
-clearButton.classList.add('clear-button', 'button-type');
-clearButton.innerText = "Clear";
-filterMenu.appendChild(clearButton);
+    // Añadir el botón de "Limpiar Filtros" al final del menú de filtros
+    const clearButton = document.createElement('button');
+    clearButton.classList.add('clear-button', 'button-type');
+    clearButton.innerText = "Clear";
+    filterMenu.appendChild(clearButton);
 
 
 
@@ -62,7 +62,7 @@ filterMenu.appendChild(clearButton);
       let descripciones = {
         nombre: desc.name,
         descripcion: desc.flavor_text_entries.find(entry => entry.language.name === 'es').flavor_text,
-        genus:desc.genera.find(entry =>entry.language.name === 'es' ).genus
+        genus: desc.genera.find(entry => entry.language.name === 'es').genus
       }
       descripcionesPokemon.push(descripciones)
     })
@@ -107,7 +107,7 @@ filterMenu.appendChild(clearButton);
 
 
         let description = descripcionesPokemon.find(poke => poke.nombre === pokemon.name)
-        
+
         let hdSprite = pokemon.sprites.other['official-artwork'].front_default;
         let weight = pokemon.weight.toString().split('');
         weight.splice(weight.length - 1, 0, ',');
@@ -118,7 +118,7 @@ filterMenu.appendChild(clearButton);
           name: correctedName,
           pokedexId: correctedId,
           pixelSprite: spritePixel,
-          genus:description.genus,
+          genus: description.genus,
           drawSprite: hdSprite,
           weight: weight.join(''),
           height: height.join(''),
@@ -159,7 +159,8 @@ document.addEventListener('click', (e) => {
 });
 
 // Delegar el evento de clic en el filterMenu
-filterMenu.addEventListener('click', function(e) {
+filterMenu.addEventListener('click', function (e) {
+
   // Si se hace clic en un botón de tipo Pokémon
   if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
     const clickedButton = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
@@ -196,15 +197,17 @@ function updateDisplay(pokemonInfo) {
       <span class='name-id'><h4 class='pokedex-id'>N° ${pokemonInfo.pokedexId}</h4><h2 class='name'>${pokemonInfo.name}</h2></span>
 
   <div class='data-container'>
+  <div>
         <h2 class='genus'>${pokemonInfo.genus}</h2>
-<aside>
-    <h3 class='weight'>Peso: ${pokemonInfo.weight} kg</h3>
-    <h3 class='height'>Altura: ${pokemonInfo.height.padStart(3, '0')} m</h3>
+        <h3 class='weight'>Peso: ${pokemonInfo.weight} kg</h3>
+     <h3 class='height'>Altura: ${pokemonInfo.height.padStart(3, '0')} m</h3>
+</div>
+    
     <p class='description'>${pokemonInfo.descripcion}</p>
-    </aside>
+    
   </div>
     `
-  
+
 }
 
 llamadoApi();

@@ -258,6 +258,7 @@ main {
     flex-direction: column;
     overflow-y: scroll;
     height: 100%;
+    width: 100%;
 
 
     .img-container {
@@ -338,32 +339,26 @@ main {
 }
 .data-container {
     display: flex;
+    flex-direction: row;
     height: auto;
     flex-wrap: wrap;
     width: 100%;
     margin: 100px auto 0 auto;
+    padding-left: 10px;
 
+
+    div{
+    }
     .genus{
-        margin-left: 5px;
-    }
-aside{
-    background-color: rgb(238, 208, 208);
-    margin-top: 5px;
-    padding: 10px;
-}
-    .height {
-        color: red;
-        flex: 1 1 300px;
+        font-size: 28px;
     }
 
-    .weight {
-        color: blue;
-        flex: 1 1 300px;
-
+    .height, .weight {
+     font-size: 22px;
     }
 
     .description {
-        margin: 10px;
-        flex: 1 1 900px;
+     margin-top:20px;
+     font-size: 20px;   
     }
 }
