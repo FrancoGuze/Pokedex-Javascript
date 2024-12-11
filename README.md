@@ -1,5 +1,5 @@
 # Pokédex Web App
-
+## Trabajando en la versión para moviles! / Currently working on the movile version! 
 Este es un proyecto de Pokédex interactiva desarrollado con HTML, CSS y JavaScript, utilizando la API de PokéAPI para obtener datos en tiempo real sobre los Pokémon.
 
 Todavía estoy trabajando en la parte de diseño, pero la funcionalidad se encuentra funcionando correctamente
